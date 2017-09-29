@@ -1,0 +1,18 @@
+﻿@model List<LaserArt.Models.Sales>
+
+@{
+    ViewBag.Title = "Дизайнер";
+}
+
+<h2>Дизайнер</h2>
+
+<div>
+    <hr />
+   @Html.DropDownList("SaleDropDown",
+                                 new SelectList(Model,
+                                           "Id", "image"),
+                                            "--Выбрать предложение--",
+                                new { @class = "form-control" })
+   <input type="button" onclick="saleDetails()" value="Выбрать" class="btn btn-default"/>
+</div>
+

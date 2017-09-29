@@ -1,0 +1,49 @@
+﻿@model LaserArt.Models.Product
+
+@{
+    ViewBag.Title =Model.ProductTitle;
+}
+<div class="jumbotron">
+    <h2 class="h1">@Model.ProductTitle</h2>
+    @if (this.User.IsInRole("Administrator"))
+    {
+        <a id="@Model.Id" class="deleteProduct">Удалить</a>
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="@Model.ImageSource" class="imageHeader" id="generalImg" />
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="@Model.ImageSource" class="imageHeader iconImg" />
+                    </div>
+                    <div class="col-md-2">
+                        <img src="@Model.ImageSource1" class="imageHeader iconImg" />
+                    </div>
+                    <div class="col-md-2">
+                        <img src="@Model.ImageSource2" class="imageHeader iconImg" />
+                    </div>
+                    <div class="col-md-2">
+                        <img src="@Model.ImageSource3" class="imageHeader iconImg" />
+                    </div>
+                </div>
+                </div>
+            <div class="col-md-6">
+                <hr class="productPagehr">
+              
+                <p> <h class="productpageh3">Цена:</h>@Model.Price руб.</p>
+                @if (@Model.PriceDiscounted != 0)
+                {
+                    <del> @Model.PriceDiscounted</del>
+                }
+                <hr class="productPagehr">
+                <input type="number" id="cardQuantity"  value="1" class="form-control"/>
+                <div style="color:red"id="cardQuantityRequired"></div>
+                <input type="button" value="Добавить в корзину +" class="btn btn-default" onclick="addToCard(@Model.Id)"/>
+                <h2 class="productpageh3">Техническое описание</h2>
+                @Html.Raw(Model.ProductDescription)
+                <hr class="productPagehr">
+            </div>
+        </div>
+    </div>
+</div>

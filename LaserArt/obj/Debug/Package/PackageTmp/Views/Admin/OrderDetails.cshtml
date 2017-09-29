@@ -1,0 +1,48 @@
+﻿@model Dictionary<int,LaserArt.Models.Product>
+@{
+    ViewBag.Title = "OrderDetails";
+}
+
+<div class="jumbotron">
+
+    @foreach (var item in Model)
+    {
+        <div class="row orderItem" id="@(item.Value+"itemCard")">
+            <div class="row">
+                <div class="col-md-3">
+                    <p>Название</p>
+                </div>
+                
+                <div class="col-md-2">
+                    <p>Кол-во</p>
+                </div>
+                <div class="col-md-2">
+                    <p>Цена</p>
+                </div>
+             
+            </div>
+            <hr class="productPagehr" />
+            <div class="row ">
+                <div class="col-md-3">
+                    <p>@item.Value.ProductTitle</p>
+                    <img src="@item.Value.ImageSource" class="imageHeader" />
+                </div>
+               
+                <div class="col-md-2">
+                    <p>@item.Key</p>
+                </div>
+                <div class="col-md-2">
+                    <p>@item.Value.Price руб.</p>
+                    @if (@item.Value.PriceDiscounted != 0)
+                {
+                        <del> @item.Value.PriceDiscounted</del>
+                    }
+                </div>
+               
+            </div>
+        </div>
+        <hr />
+    }
+   
+</div>
+

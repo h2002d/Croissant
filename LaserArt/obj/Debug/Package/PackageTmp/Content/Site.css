@@ -1,0 +1,225 @@
+﻿body {
+    /*padding-top: 50px;*/
+    padding-bottom: 20px;
+    background: url("../images/backgroundBlur.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+@media (min-width: 768px) {
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+
+    .sidebar-nav .navbar ul {
+        float: none;
+        display: block;
+    }
+
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+
+        .sidebar-nav .navbar li a {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-right: 0px !important;
+    padding-left: 15px;
+    background-color:white;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.imageHeader {
+    width: 50%;
+    height: auto;
+    max-height:50%;
+}
+.mainlogo {
+    width: 100%;
+    height: auto;
+}
+.mySlides {
+    display: none;
+   
+}
+.myslideImage {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+}
+.w3-content .w3-section {
+    width: 100%;
+}
+.productPagehr{
+    border-top:1px solid #000000;
+}
+.productpageh3 {
+    color: #0066ff;
+    font-weight: bold;
+}
+.product{
+    float:left;
+   
+}
+.orderItem{
+    border: 1px solid #808080;
+    margin-bottom:5px;
+    padding:5px;
+    }
+/*.btn-accept-order{
+
+}*/
+
+.jumbotron{
+    background-color:#ffffff !important;
+}
+.adminOrderRow{
+    cursor:pointer;
+}
+.headerSpan {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+.top-menu {
+    background-color: black;
+    padding: 20px 0 20px 20px;
+    color: #ffffff;
+    margin-bottom: 15px !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 80px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.inner-addon {
+    position: relative;
+}
+
+    /* style icon */
+    .inner-addon .glyphicon {
+        position: absolute;
+        padding: 10px;
+        pointer-events: none;
+    }
+
+/* align icon */
+.left-addon .glyphicon {
+    left: 0px;
+}
+
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+.header-text 
+{
+    text-align:center;
+}
+.right-addon input {
+    padding-right: 30px;
+}
+.top-menu-header{
+    font-size:20px;
+}
+.top-menu-item {
+    float: right;
+    margin-right:10px;
+}
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 999999999999999; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #808080; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+}
+
+    #myBtn:hover {
+        background-color: #555; /* Add a dark-grey background on hover */
+    }
+.toolbar {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+    bottom: 0;
+    background: black;
+    z-index:9999999;
+}
+.toolbar-right {
+    float: right;
+    width: 510px;
+    margin: 6px 0;
+}
+.footer-btn{
+    background-color:black !important;
+    color:#ffffff;
+}
+.footer-btn:hover {
+    background-color:#555 !important;
+}
+.field-validation-valid {
+    display: none;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+.all_1 {
+    display: inline-block;
+}
+.iconImg {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+#generalImg {
+    width: 100%;
+    height: auto;
+}
+#cardQuantity{
+    width:50px;
+}
+.cardIcon{
+    width:auto;
+    height:16px;
+    margin-right:10px;
+}
+.item-div
+{
+    cursor:pointer;
+}
+.item-div:hover
+{
+    border:1px solid #d1d1d1;
+}

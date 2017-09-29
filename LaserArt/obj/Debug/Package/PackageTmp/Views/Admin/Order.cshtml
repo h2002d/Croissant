@@ -1,0 +1,38 @@
+﻿@model List<LaserArt.Models.Order>
+
+@{
+    ViewBag.Title = "Order";
+}
+
+<h2>Заказы</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Имя покупателья</th>
+            <th>Адрес</th>
+            <th>Время</th>
+
+        </tr>
+
+    </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr id="@item.Id"class="adminOrderRow">
+                    <td>@item.Id</td>
+                    <td>@item.Name @item.SurName</td>
+                    <td>@item.Address</td>
+                    <td>@item.OrderDate</td>
+                </tr>
+            }
+            </tbody>
+
+</table>
+</div>
+

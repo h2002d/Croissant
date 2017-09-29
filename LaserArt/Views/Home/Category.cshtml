@@ -1,0 +1,59 @@
+﻿@model List<LaserArt.Models.Product>
+
+
+<h2>@ViewBag.CategoryName</h2>
+@if (this.User.IsInRole("Administrator"))
+        {
+<a href="/home/deleteCategory/@ViewBag.CategoryId">Ջնջել</a>
+<a href="/home/editCategory/@ViewBag.CategoryId">Փոփոխել</a>
+
+}
+                 <div class="container jumbotron">
+    @{
+        var count = 0;
+    }
+    @foreach (var item in Model)
+    {
+        if (count % 3 == 0 && count == 0)
+        {
+            @Html.Raw("<div class=\"row\" id=\"" + count + "\">");
+        }
+
+        <div class="col-md-4 item-div">
+            @if (this.User.IsInRole("Administrator"))
+            {
+                <a href="/home/editproduct/@item.Id">Փոփոխել</a>
+            }
+            <div class="row product" align="center" id="@item.Id" style="font-size:12px; padding:5px; margin-bottom:20px;">
+                <div class="col-md-12">
+                    <img style="width:100%; height:auto;" src="@item.ImageSource" />
+                    <p>#@item.Id @item.ProductTitle</p>
+                    <p style="display:inline">
+                        Գինը: @item.Price դրամ
+                        @if (@item.PriceDiscounted != 0)
+                        {
+                            <del style="display:inline"> @item.PriceDiscounted</del>
+                        }
+                    </p>
+                </div>
+            </div>
+            <div class="row" align="center">
+                <input type="button" value="Պատվիրել" class="btn btn-default" onclick="orderBtnClickItem(@item.Id)" />
+            </div>
+        </div>
+        if (count % 3 == 0 && count == 0)
+        {
+            Html.Raw("</div>");
+
+        }
+        count++;
+
+    }
+</div>
+
+
+
+
+
+
+
