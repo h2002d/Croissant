@@ -19,7 +19,7 @@ namespace LaserArt.Models
         public List<CardModel> Products{ get; set; }
         public Order()
         {
-            Products = new List<CardModel>();
+           // Products = new List<CardModel>();
         }
 
         public int saveOrder()

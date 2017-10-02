@@ -1,0 +1,41 @@
+﻿@model List<LaserArt.Models.Category>
+
+
+<h2>@ViewBag.CategoryName</h2>
+@if (this.User.IsInRole("Administrator"))
+{
+    <a href="/admin/deleteCategory/@ViewBag.CategoryId">Ջնջել</a>
+    <a href="/admin/editCategory/@ViewBag.CategoryId">Փոփոխել</a>
+
+}
+<div class="container jumbotron">
+    @{
+        var count = 0;
+    }
+    @foreach (var item in Model)
+    {
+        if (count % 3 == 0 && count == 0)
+        {
+            @Html.Raw("<div class=\"row\" id=\"" + count + "\">");
+        }
+
+        <div id="@item.Id" class="col-md-4 item-div" align="center">
+            <img style="width:100%; height:auto;" src="@item.CategoryImage" />
+            <p>@item.CategoryName</p>
+        </div>
+        if (count % 3 == 0 && count == 0)
+        {
+            Html.Raw("</div>");
+
+        }
+        count++;
+
+    }
+</div>
+
+
+
+
+
+
+

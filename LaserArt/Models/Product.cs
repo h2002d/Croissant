@@ -19,11 +19,9 @@ namespace LaserArt.Models
         public decimal PriceDiscounted { get; set; }
         [Required]
         public string ImageSource { get; set; }
-        [Required]
+       
         public string ImageSource1 { get; set; }
-        [Required]
         public string ImageSource2 { get; set; }
-        [Required]
         public string ImageSource3 { get; set; }
         [Required]
         public int CategoryId { get; set; }

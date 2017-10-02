@@ -19,21 +19,18 @@
             @Html.Raw("<div class=\"row\" id=\"" + count + "\">");
         }
 
-        <div class="col-md-4 item-div">
+        <div class="col-md-4 product">
             @if (this.User.IsInRole("Administrator"))
             {
                 <a href="/home/editproduct/@item.Id">Փոփոխել</a>
             }
-            <div class="row product" align="center" id="@item.Id" style="font-size:12px; padding:5px; margin-bottom:20px;">
+            <div class="row " align="center" id="@item.Id" style="font-size:12px; padding:5px; margin-bottom:20px;">
                 <div class="col-md-12">
                     <img style="width:100%; height:auto;" src="@item.ImageSource" />
                     <p>#@item.Id @item.ProductTitle</p>
                     <p style="display:inline">
                         Գինը: @item.Price դրամ
-                        @if (@item.PriceDiscounted != 0)
-                        {
-                            <del style="display:inline"> @item.PriceDiscounted</del>
-                        }
+                    
                     </p>
                 </div>
             </div>

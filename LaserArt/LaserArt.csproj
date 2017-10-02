@@ -207,6 +207,7 @@
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DesignerDAO.cs" />
     <Compile Include="DAO\OrderDAO.cs" />
+    <Compile Include="DAO\ParentCategoryDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,6 +219,7 @@
     <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\ParentCategory.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Sales.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -230,12 +232,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\backgroundBlur.jpg" />
+    <Content Include="images\backgoundBlur.jpg" />
     <Content Include="images\box.jpg" />
     <Content Include="images\cardBasketIcon.png" />
     <Content Include="images\Carousel\box.jpg" />
     <Content Include="images\Carousel\Logo.png" />
     <Content Include="images\logo_croissant.png" />
+    <Content Include="images\PLATTER_WEB__croissants_2616_V2_rfc.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -295,6 +298,9 @@
     <Content Include="Views\Admin\OrderDetails.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\_PartialOrderDetails.cshtml" />
+    <Content Include="Views\Admin\CreateCategory.cshtml" />
+    <Content Include="Views\Home\ParentCategory.cshtml" />
+    <Content Include="Views\Home\OrderAproval.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

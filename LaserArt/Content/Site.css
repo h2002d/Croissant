@@ -1,11 +1,15 @@
 ﻿body {
     /*padding-top: 50px;*/
     padding-bottom: 20px;
-    background: url("../images/backgroundBlur.jpg") no-repeat center center fixed;
+    background: url("../images/PLATTER_WEB__croissants_2616_V2_rfc.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+p {
+    margin: 0 0 10px;
+    font-weight: bold;
 }
 @media (min-width: 768px) {
     .sidebar-nav .navbar .navbar-collapse {
@@ -32,7 +36,8 @@
 .body-content {
     padding-right: 0px !important;
     padding-left: 15px;
-    background-color:white;
+    background-color: white;
+    background: rgba(255,255,255, 0.7);
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -90,7 +95,7 @@ textarea {
 }*/
 
 .jumbotron{
-    background-color:#ffffff !important;
+    background-color:transparent !important;
 }
 .adminOrderRow{
     cursor:pointer;
@@ -215,18 +220,26 @@ textarea {
     height:16px;
     margin-right:10px;
 }
+.product {
+    cursor: pointer;
+}
+
+    .product:hover {
+        border: 1px solid #d1d1d1;
+    }
 .item-div
 {
     cursor:pointer;
+
 }
 .item-div:hover
 {
-    border:1px solid #d1d1d1;
+    border:2px solid black;
 }
 #orderDetails {
-    display:none;
-    width:70%;
-    height:70%;
+    display: none;
+    max-width: 280px;
+    height: 70%;
     padding: 20px;
     background-color: #d1d1d1;
     position: fixed;
@@ -235,5 +248,5 @@ textarea {
     left: 0;
     right: 0;
     margin: auto;
-    z-index:999999999;
+    z-index: 999999999;
 }

@@ -9,9 +9,9 @@
         @if (!Request.Browser.IsMobileDevice)
         {
 
-            <div class="col-md-3">
+            @*<div class="col-md-3">
                 <img src="~/images/Logo.png" class="mainlogo" />
-            </div>
+            </div>*@
             <div class="col-md-9">
                 <div class="w3-content w3-section">
                     @foreach (var item in ViewBag.Sales)
@@ -26,9 +26,9 @@
         }
         else
         {
-            <div class="col-md-12">
+            @*<div class="col-md-12">
                 <img src="~/images/Logo.png" class="mainlogo" />
-            </div>
+            </div>*@
         }
     </div>
 </div>
@@ -50,14 +50,14 @@
         <div class="col-md-4">
             @if (this.User.IsInRole("Administrator"))
             {
-                <a href="/home/editproduct/@item.Id">Изменить</a>
+                <a href="/home/editproduct/@item.Id">Փոփոխել</a>
             }
             <div class="row product" id="@item.Id" style="font-size:12px; padding:5px; margin-bottom:20px;">
                 <div class="col-md-8 ">
                     <img style="width:100%; height:auto;" src="@item.ImageSource" />
                     <p>#@item.Id @item.ProductTitle</p>
                     <p style="display:inline">
-                        Цена: @item.Price руб.
+                        Գինը: @item.Price դրամ.
                         @if (@item.PriceDiscounted != 0)
                         {
                             <del style="display:inline"> @item.PriceDiscounted</del>

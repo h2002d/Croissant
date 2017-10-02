@@ -10,10 +10,16 @@ namespace LaserArt.Models
     {
         public int? Id { get; set; }
         public string CategoryName { get; set; }
-
+        public string CategoryImage { get; set; }
+        public int ParentCategoryId { get; set; }
         public static List<Category> GetCategories(int? id)
         {
             return CategoryDAO.getProducts(id);
+        }
+
+        public static List<Category> GetCategoriesByParentId(int? id)
+        {
+            return CategoryDAO.getCategoryByParentId(id);
         }
 
         public Category SaveCategory()
@@ -25,5 +31,10 @@ namespace LaserArt.Models
         {
             CategoryDAO.DeleteCategoryByID(id);
         }
+        public static void SetCategoryParent(int categoryId, int parentId)
+        {
+            CategoryDAO.setCategoryParent(categoryId, parentId);
+        }
+
     }
 }

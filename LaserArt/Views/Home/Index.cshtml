@@ -1,17 +1,17 @@
-﻿@model  Dictionary<string, List<LaserArt.Models.Product>>
+﻿@model  List<LaserArt.Models.Category>
 
 @{
     ViewBag.Title = "Главная";
 }
 
 <div class="jumbotron" style="padding:0 !important;">
-    <div class="container">
+    <div class="row" style="background-color:transparent !important;">
         @if (!Request.Browser.IsMobileDevice)
         {
 
-            <div class="col-md-3">
+            @*<div class="col-md-3">
                 <img src="~/images/logo_croissant.png" class="mainlogo" />
-            </div>
+            </div>*@
             <div class="col-md-9">
 
                 @*<div class="w3-content w3-section">
@@ -27,9 +27,9 @@
         }
         else
         {
-            <div class="col-md-12">
+            @*<div class="col-md-12">
                 <img src="~/images/logo_croissant.png" class="mainlogo" />
-            </div>
+            </div>*@
         }
     </div>
 </div>
@@ -38,56 +38,28 @@
         @ViewBag.Info
     </div>
 
-    @foreach (var item in Model)
-    {
-        if (item.Value.Count == 0)
-        {
-            continue;
-        }
-        @Html.Raw("<div class=\"row\" >");
-
-
-        <h3>@item.Key</h3>
-        <hr />
-        int i = 0;
-        foreach (var product in item.Value)
+   
+        @{int i = 0; }
+        @foreach (var category in Model)
         {
 
             if (i == 0 || i % 3 == 0)
             {
                 @Html.Raw("<div class=\"row\" >");
             }
-
-
-            <div class="col-md-4 item-div"  >
-                @if (this.User.IsInRole("Administrator"))
-                    {
-                    <a href="/home/editproduct/@product.Id">Փոփոխել</a>
-                }
-                <div class="row product" align="center" id="@product.Id" style="font-size:12px; padding:5px; margin-bottom:20px;">
-                    <div class="col-md-12">
-                        <img style="width:100%; height:auto;" src="@product.ImageSource" />
-                        <p>#@product.Id @product.ProductTitle</p>
-                        <p style="display:inline">
-                            Գինը: @product.Price դրամ
-                            @if (@product.PriceDiscounted != 0)
-                            {
-                                <del style="display:inline"> @product.PriceDiscounted</del>
-                            }
-                        </p>
-                    </div>
-                </div>
-                <div class="row" align="center">
-                    <input type="button" value="Պատվիրել" class="btn btn-default" onclick="orderBtnClickItem(@product.Id)" />
-                </div>
+            <div id="@category.Id" class="col-md-4 item-div" align="center">
+                <img style="width:100%; height:auto;" src="@category.CategoryImage" />
+                <p>@category.CategoryName</p>
             </div>
+
+
+         
             i++;
-            if (i != 0 && i % 3 == 0 || i == item.Value.Count)
+            if (i != 0 && i % 3 == 0 || i == Model.Count)
             {
                 @Html.Raw("</div>")
             }
         }
-        @Html.Raw("</div>")
-    }
+       
 </div>
 @*<script src="~/Scripts/carousel.js"></script>*@

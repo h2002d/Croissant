@@ -14,97 +14,57 @@
     @Html.HiddenFor(model => model.Id)
     <div class="form-horizontal">
         <hr />
-        @Html.ValidationSummary(true, "Заполните поля.", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "Լրացրեք դաշտերը", new { @class = "text-danger" })
         <div class="form-group">
-            <p>Название:</p>
+            <p>Անվանումը:</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProductTitle, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductTitle, "Название не указано", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.ProductTitle, "Անվանումը առկա չէ", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-           <p>Технические характеристики</p>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new {@id="textarea", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
 
         <div class="form-group">
-            <p>Цена</p>
+            <p>Գինը</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "Задайте цену", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Price, "Գինը առկա չէ", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-           <p>Прежняя цена:</p>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PriceDiscounted, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PriceDiscounted, "Задайте прежнюю цену", new { @class = "text-danger" })
-            </div>
-        </div>
+        
         <div class="form-group">
             <div class="col-md-10">
                 <input type="file" class="form-control uploadEditorImage" />
-                <input type="button" value="Загрузить" class="btn btn-default fileUpload" />
+                <input type="button" value="Վերբեռնել" class="btn btn-default fileUpload" />
                 @Html.TextBoxFor(model => model.ImageSource, new {@class="image", @style = "display:none;" })
-                @Html.ValidationMessageFor(model => model.ImageSource, "Картинка не загружена", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.ImageSource, "Վերբեռնեք նկարը", new { @class = "text-danger" })
 
 
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="file" class="form-control uploadEditorImage" />
-                <input type="button" value="Загрузить" class="btn btn-default fileUpload" />
-                @Html.TextBoxFor(model => model.ImageSource1, new { @class = "image", @style = "display:none;" })
-                @Html.ValidationMessageFor(model => model.ImageSource1, "Картинка не загружена", new { @class = "text-danger" })
-
-
-            </div>
-        </div><div class="form-group">
-    <div class="col-md-10">
-        <input type="file" class="form-control uploadEditorImage" />
-        <input type="button" value="Загрузить" class="btn btn-default fileUpload" />
-        @Html.TextBoxFor(model => model.ImageSource2, new { @class = "image",@style = "display:none;" })
-        @Html.ValidationMessageFor(model => model.ImageSource2, "Картинка не загружена", new { @class = "text-danger" })
-
-
-    </div>
-</div>
-        <div class="form-group">
-    <div class="col-md-10">
-        <input type="file" class="form-control uploadEditorImage" />
-        <input type="button" value="Загрузить" class="btn btn-default fileUpload" />
-        @Html.TextBoxFor(model => model.ImageSource3, new { @class = "image", @style = "display:none;" })
-        @Html.ValidationMessageFor(model => model.ImageSource3, "Картинка не загружена", new { @class = "text-danger" })
-
-
-    </div>
-</div>
+        
        
         <div class="form-group">
-           <p>Категория</p>
+           <p>Կատեգորիա</p>
             <div class="col-md-10"> 
                 @Html.DropDownListFor(m => m.CategoryId,
                                  new SelectList(ViewBag.Categories,
                                            "Id", "CategoryName"),
-                                            "--Выбрать категорию--",
+                                            "--Ընտրել կատեգորիան--",
                                 new { @class = "form-control"})  </div>
         </div>
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Сохранить" class="btn btn-default" />
+                <input type="submit" value="Պահպանել" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Վերադառնալ", "Index")
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

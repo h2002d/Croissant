@@ -20,7 +20,8 @@ namespace LaserArt.Controllers
 
         public AccountController()
         {
-            ViewBag.Categories = LaserArt.Models.Category.GetCategories(null);
+            ViewBag.ParentCategories = LaserArt.Models.ParentCategory.GetCategories(null);
+
 
         }
 
