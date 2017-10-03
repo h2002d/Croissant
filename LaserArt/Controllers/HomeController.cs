@@ -17,8 +17,16 @@ namespace LaserArt.Controllers
     {
         public HomeController()
         {
-           
-            ViewBag.ParentCategories = LaserArt.Models.ParentCategory.GetCategories(null);
+            Dictionary<Models.ParentCategory, List<Models.Category>> mainParent = 
+                new Dictionary<Models.ParentCategory, List<Models.Category>>();
+           // ViewBag.ParentCategories = 
+                var parents= LaserArt.Models.ParentCategory.GetCategories(null);
+            foreach(var parent in parents)
+            {
+                var categories = LaserArt.Models.Category.GetCategoriesByParentId(parent.Id);
+                mainParent.Add(parent, categories);
+            }
+            ViewBag.ParentCategories = mainParent;
         }
         public ActionResult Index()
         {
@@ -95,6 +103,8 @@ namespace LaserArt.Controllers
         [ValidateInput(false)]
         public ActionResult EditCategory(int id)
         {
+            ViewBag.ParentCategory = Models.ParentCategory.GetCategories(null);
+
             Category category = Models.Category.GetCategories(id).FirstOrDefault();
             return View("CreateCategory", category);
         }

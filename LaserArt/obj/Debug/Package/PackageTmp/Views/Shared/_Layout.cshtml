@@ -69,7 +69,9 @@
             <div class="col-sm-9" style="padding:0 !important;">
                 <div class="container body-content">
                     @RenderBody()
+
                     <div align="center" id="orderDetails">
+
                         Բեռնվում է․․․
                     </div>
 
@@ -114,8 +116,11 @@
             document.body.scrollTop = 0; // For Chrome, Safari and Opera
             document.documentElement.scrollTop = 0; // For IE and Firefox
         }
+        function closeDiv() {
+            $("#orderDetails").hide();
+        }
         $(document).ready(function () {
-
+           
             $('#searchArea').bind("enterKey", function (e) {
                 window.location = "/home/Search?query=" + $(this).val();
             });
@@ -180,9 +185,9 @@
 
         });
         function orderBtnClickItem(itemId) {
-
+            $("#orderDetails").show();
             $('#orderDetails').load("/home/Order/" + itemId);
-            document.getElementById("orderDetails").style.display = "block";
+           
                     //         $.ajax({
                     //    type: 'GET',
                     //    url: "/home/Order/"+itemId,
@@ -200,7 +205,7 @@
                 url: '@Url.Content("~/home/OrderDetails")',
                 data: objectToPass,
                 success: function (data) {
-                    $('.orderDetails').innerHTML = data;
+                    $('#orderDetails').innerHTML = data;
                 }
             });
         }
@@ -211,7 +216,9 @@
         //        $('#generalImg').attr('src', $(event.target).attr('src'));
         //    });
         //});
-
+        window.onload = function () {
+           
+        };
     </script>
     @*@if (Request.Browser.IsMobileDevice)
         {

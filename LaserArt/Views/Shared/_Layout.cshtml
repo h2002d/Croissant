@@ -44,7 +44,14 @@
                                 <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
                                 @foreach (var item in ViewBag.ParentCategories)
                                 {
-                                    <li><a href="/home/parentcategory/@item.Id">@item.Name</a></li>
+                                    <li onmouseout="categoryClose(@item.Key.Id)" onmouseover="categoryHover(@item.Key.Id)"><a href="/home/parentcategory/@item.Key.Id">@item.Key.Name</a>
+                                <ul class="nav navbar-nav" id="orderDetails_@item.Key.Id" style="display:none;">
+                                   @foreach (var cat in item.Value)
+                                   {
+                                    <li style="background-color:#e9e4e4"><a href="/home/category/@cat.Id">@cat.CategoryName</a></li>
+                                   }
+                                </ul>
+                                </li>
                                 }
                                 <li>@Html.ActionLink("Մեր Մասին", "About", "Home")</li>
                                 <li>@Html.ActionLink("Կապ", "Contact", "Home")</li>
@@ -69,7 +76,9 @@
             <div class="col-sm-9" style="padding:0 !important;">
                 <div class="container body-content">
                     @RenderBody()
+
                     <div align="center" id="orderDetails">
+
                         Բեռնվում է․․․
                     </div>
 
@@ -114,8 +123,11 @@
             document.body.scrollTop = 0; // For Chrome, Safari and Opera
             document.documentElement.scrollTop = 0; // For IE and Firefox
         }
+        function closeDiv() {
+            $("#orderDetails").hide();
+        }
         $(document).ready(function () {
-
+           
             $('#searchArea').bind("enterKey", function (e) {
                 window.location = "/home/Search?query=" + $(this).val();
             });
@@ -150,7 +162,7 @@
 
                 });
             });
-
+          
             $(".fileUpload").click(function () {
                 var parent = $(this).parent();
                 var data = new FormData();
@@ -179,10 +191,16 @@
             });
 
         });
+        function categoryHover(itemId) {
+            $("#orderDetails_"+itemId).show();
+        }
+        function categoryClose(itemId) {
+            $("#orderDetails_" + itemId).hide();
+        }
         function orderBtnClickItem(itemId) {
-
+            $("#orderDetails").show();
             $('#orderDetails').load("/home/Order/" + itemId);
-            document.getElementById("orderDetails").style.display = "block";
+           
                     //         $.ajax({
                     //    type: 'GET',
                     //    url: "/home/Order/"+itemId,
@@ -200,7 +218,7 @@
                 url: '@Url.Content("~/home/OrderDetails")',
                 data: objectToPass,
                 success: function (data) {
-                    $('.orderDetails').innerHTML = data;
+                    $('#orderDetails').innerHTML = data;
                 }
             });
         }
@@ -211,7 +229,9 @@
         //        $('#generalImg').attr('src', $(event.target).attr('src'));
         //    });
         //});
-
+        window.onload = function () {
+           
+        };
     </script>
     @*@if (Request.Browser.IsMobileDevice)
         {

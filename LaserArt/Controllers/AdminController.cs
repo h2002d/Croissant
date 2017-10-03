@@ -11,7 +11,16 @@ namespace LaserArt.Controllers
     {
         public AdminController()
         {
-            ViewBag.ParentCategories = LaserArt.Models.ParentCategory.GetCategories(null);
+            Dictionary<Models.ParentCategory, List<Models.Category>> mainParent =
+               new Dictionary<Models.ParentCategory, List<Models.Category>>();
+            // ViewBag.ParentCategories = 
+            var parents = LaserArt.Models.ParentCategory.GetCategories(null);
+            foreach (var parent in parents)
+            {
+                var categories = LaserArt.Models.Category.GetCategoriesByParentId(parent.Id);
+                mainParent.Add(parent, categories);
+            }
+            ViewBag.ParentCategories = mainParent;
         }
         // GET: Admin
         public ActionResult Index()
