@@ -16,10 +16,16 @@
             <div class="col-md-8">
                 <ul>
                     <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
-                    @foreach (var item in ViewBag.Categories)
-                {
-                        <li><a href="/home/category/@item.Id">@item.CategoryName</a></li>
-                    }
+                  
+                        <li onmouseout="categoryClose()" onmouseover="categoryHover()"><a href="">Կատեգորիաներ</a>
+                    <ul class="dropdown-menu" id="categoryDetails" style="display:none; z-index:999999999999;">
+                                @foreach (var cat in ViewBag.Categories)
+                                {
+                                    <li style="background-color:#e9e4e4"><a href="/home/category/@cat.Id">@cat.CategoryName</a></li>
+                                }
+                            </ul>
+                        </li>
+                    
                     <li>@Html.ActionLink("Մեր Մասին", "About", "Home")</li>
                     <li>@Html.ActionLink("Կապ", "Contact", "Home")</li>
 
@@ -160,7 +166,12 @@
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector: '#textarea' });</script>
     <script type="text/javascript">
-
+        function categoryHover() {
+            $("#categoryDetails").show();
+        }
+        function categoryClose() {
+            $("#categoryDetails").hide();
+        }
         window.onscroll = function () { scrollFunction() };
 
         function scrollFunction() {
