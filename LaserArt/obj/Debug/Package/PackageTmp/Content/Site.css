@@ -1,11 +1,12 @@
 ﻿body {
     /*padding-top: 50px;*/
     padding-bottom: 20px;
-    background: url("../images/backgroundBlur.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
+    /*background: url("../images/backgroundBlur.jpg") no-repeat center center fixed;*/
+    background-color:white;
+    /*-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover;*/
 }
 @media (min-width: 768px) {
     .sidebar-nav .navbar .navbar-collapse {
@@ -13,20 +14,7 @@
         max-height: none;
     }
 
-    .sidebar-nav .navbar ul {
-        float: none;
-        display: block;
-    }
 
-    .sidebar-nav .navbar li {
-        float: none;
-        display: block;
-    }
-
-        .sidebar-nav .navbar li a {
-            padding-top: 12px;
-            padding-bottom: 12px;
-        }
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -88,7 +76,30 @@ textarea {
 /*.btn-accept-order{
 
 }*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+   
+}
 
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        li a:hover {
+            text-decoration: none;
+            background-color: #555;
+        }
 .jumbotron{
     background-color:#ffffff !important;
 }
@@ -104,10 +115,10 @@ textarea {
     background-color: black;
     padding: 20px 0 20px 20px;
     color: #ffffff;
-    margin-bottom: 15px !important;
+   
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    margin-top: 80px;
+   
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
@@ -179,7 +190,7 @@ textarea {
 .toolbar-right {
     float: right;
     width: 510px;
-    margin: 6px 0;
+    
 }
 .footer-btn{
     background-color:black !important;
@@ -222,4 +233,18 @@ textarea {
 .item-div:hover
 {
     border:1px solid #d1d1d1;
+}
+#orderDetails {
+    display:none;
+    width:70%;
+    height:70%;
+    padding: 20px;
+    background-color: #d1d1d1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index:999999999;
 }

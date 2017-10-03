@@ -3,57 +3,84 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Re:Store Family ── Сеть фирменых магазинов техники Apple и Samsung  в Москве. Официальный представитель. Оригинальная  продукция Apple и Samsung</title>
+    <title>@ViewBag.Title - Բանջարեղեն</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
+    @if (!Request.Browser.IsMobileDevice)
+    {
+        <div class="list-inline top-menu row">
+            <div class="col-md-2" style="font-size:30px; font-style:italic;" title="Բանջարեղեն"><a style="text-decoration:none; color:white;" href="/">Բանջարեղեն</a></div>
+            <div class="col-md-8">
+                <ul>
+                    <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
+                    @foreach (var item in ViewBag.Categories)
+                {
+                <li><a href="/home/category/@item.Id">@item.CategoryName</a></li>
+                }
+                    <li>@Html.ActionLink("Մեր Մասին", "About", "Home")</li>
+                    <li>@Html.ActionLink("Կապ", "Contact", "Home")</li>
 
+
+                </ul>
+            </div>
+
+
+            <div class=" col-md-2">
+                <div class="inner-addon right-addon">
+                    <i class="glyphicon glyphicon-search" style="color:black"></i>
+                    <input type="text" id="searchArea" class="form-control" placeholder="Որոնել..." />
+                </div>
+            </div>
+
+
+        </div>
+    }
     <div style="width:90%; margin:0 auto;">
-       
-            <div class="list-inline top-menu row">
-                <div class="col-md-5" style="font-size:30px;" title="Re:Store Family ── Сеть фирменых магазинов техники Apple и Samsung  в Москве. Официальный представитель. Оригинальная  продукция Apple и Samsung">re:store Family</div>
-                
-                @if (Request.Cookies["Cart"] != null)
-            {
-                HttpCookie cookieOld = Request.Cookies["Cart"];
+        @if (!Request.Browser.IsMobileDevice)
+        {
 
-                var value = cookieOld.Value;
-                var idList = Newtonsoft.Json.JsonConvert.DeserializeObject
-                <List<LaserArt.Models.CardModel>>(value);
-                ViewBag.CardCount = idList.Count;
-            }
-            else
-            {
-                ViewBag.CardCount = 0;
-            }
-                @if (!Request.Browser.IsMobileDevice)
-            {
-                    <div class=" col-md-3 header-text">                        
-                        <span class="headerSpan">Справочная служба</span>
-                         <br />
-                        <span style="font-weight:600 ;font-size:15px;">8 (800) 700-19-44</span>
-                          
-                            <br />
-                        <span style="font-size:10px;"> круглосуточно, без выходных</span>
-                           
-                    </div>
-                    <div class=" col-md-2" style="padding:7px"> <a href="/home/card"><img class="cardIcon" src="~/images/cardBasketIcon.png" />Корзина: <u>@ViewBag.CardCount</u> шт.</a></div>
+            <div class="col-sm-3" style="padding:0;">
+                @if (this.User.IsInRole("Administrator"))
+                {
 
-                    <div class=" col-md-2">
-                        <div class="inner-addon right-addon">
-                            <i class="glyphicon glyphicon-search" style="color:black"></i>
-                            <input type="text" id="searchArea" class="form-control" placeholder="Поиск..." />
+                <div class="sidebar-nav">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                <span class="sr-only"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
                         </div>
-                    </div>
+                        <div>
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                <ul class="nav navbar-nav">
 
-                    
+                                    <li>@Html.ActionLink("Ավելացնել ապրանք", "CreateProduct", "Home")</li>
+                                    <li>@Html.ActionLink("Ավելացնել կատեգորիա", "CreateCategory", "Home")</li>
+                                    @*<li>@Html.ActionLink("Заказы", "Order", "Admin")</li>
+                                        <li>@Html.ActionLink("Дизайнер", "Sales", "Home")</li>*@
+
+                                    @Html.Partial("_LoginPartial")
+
+
+                                </ul>
+
+                            </div><!--/.nav-collapse -->
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </div>
 
                 }
-
             </div>
-            <div>
+        }
+        <div>
+            @if (Request.Browser.IsMobileDevice)
+            {
                 <div class="col-sm-3" style="padding:0;">
                     <div class="sidebar-nav">
                         <div class="navbar navbar-default" role="navigation">
@@ -64,88 +91,68 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                @if (Request.Browser.IsMobileDevice)
-                                {
-                                    <input type="text" id="searchArea" style="margin:5px; width:70%;" class="form-control" placeholder="Поиск..." />
-                                }
+
+
+                                <input type="text" id="searchArea" style="margin:5px; width:70%;" class="form-control" placeholder="Փնտրել..." />
+
                             </div>
-                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                                <ul class="nav navbar-nav">
-                                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-                                    @foreach (var item in ViewBag.Categories)
-                                    {
-                                        <li><a href="/home/category/@item.Id">@item.CategoryName</a></li>
-                                    }
-                                    <li>@Html.ActionLink("О нас", "About", "Home")</li>
-                                    <li>@Html.ActionLink("Связь", "Contact", "Home")</li>
+                            <div>
+                                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
+                                        @foreach (var item in ViewBag.Categories)
+                                        {
+                                            <li><a href="/home/category/@item.Id">@item.CategoryName</a></li>
+                                        }
+                                        <li>@Html.ActionLink("Մեր Մասին", "About", "Home")</li>
+                                        <li>@Html.ActionLink("Կապ", "Contact", "Home")</li>
 
 
-                                    <li>  <a href="/home/card">Корзина <u>@ViewBag.CardCount</u> шт.</a></li>
 
-                                    @if (this.User.IsInRole("Administrator"))
-                                    {
-                                        <li>@Html.ActionLink("Добавит продукт", "CreateProduct", "Home")</li>
-                                        <li>@Html.ActionLink("Добавит Категорию", "CreateCategory", "Home")</li>
-                                            <li>@Html.ActionLink("Заказы", "Order", "Admin")</li>
-                                            <li>@Html.ActionLink("Дизайнер", "Sales", "Home")</li>
+
+                                        @if (this.User.IsInRole("Administrator"))
+                                        {
+                                            <li>@Html.ActionLink("Ավելացնել ապրանք", "CreateProduct", "Home")</li>
+                                            <li>@Html.ActionLink("Ավելացնել կատեգորիա", "CreateCategory", "Home")</li>
+                                            @*<li>@Html.ActionLink("Պատվերներ", "Order", "Admin")</li>
+                                                <li>@Html.ActionLink("Дизайнер", "Sales", "Home")</li>*@
 
                                             @Html.Partial("_LoginPartial")
-                                    }
+                                        }
 
-                                </ul>
+                                    </ul>
 
+                                </div><!--/.nav-collapse -->
                             </div><!--/.nav-collapse -->
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-9" style="padding:0 !important;">
-                    <div class="container body-content">
-                        @RenderBody()
-                        <hr style="border-top:1px solid #000000 !important;" />
-                        <footer style="margin-bottom:50px; font-size:10px;">
-
-                            <p>
-                                &copy; @DateTime.Now.Year - re:store-family Powered by <a href="https://www.facebook.com/novir">Novir+</a>
-                                <br />
-                                Электронная почта: internetshop.restore-family@mail.ru
-                                <br />
-                                Тел.: <phone>8 (800) 700-19-44</phone> (круглосуточно, пн-вс)
-                            </p>
-                        </footer>
+            }
+            <div class="col-sm-9" style="padding:0 !important;">
+                <div class="container body-content">
+                    @RenderBody()
+                    <div align="center" id="orderDetails">
+                        asdsadasdasdasdsad
                     </div>
-                    <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
 
 
                 </div>
-                @if (!Request.Browser.IsMobileDevice)
-                {
-                    <div class="toolbar">
-                        <div class="toolbar-right">
-                            @if (Request.Cookies["Cart"] != null)
-                            {
-                                HttpCookie cookieOld = Request.Cookies["Cart"];
-
-                                var value = cookieOld.Value;
-                                var idList = Newtonsoft.Json.JsonConvert.DeserializeObject
-                                <List<LaserArt.Models.CardModel>>(value);
-                                ViewBag.CardCount = idList.Count;
-                            }
-                            else
-                            {
-                                ViewBag.CardCount = 0;
-                            }
-
-                            @*  <img class="cardIcon" src="~/images/cardBasketIcon.png" />*@
-                            <a href="/home/card">Корзина <u>@ViewBag.CardCount</u> шт.</a>
-                            <input type="button" class="btn btn-default footer-btn" onclick="orderBtnClick()" value="Оформить заказ" />
-
-                        </div>
-                    </div>
-                }
+                <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
             </div>
-
+            @if (!Request.Browser.IsMobileDevice)
+            {
+                <div class="toolbar" align="center">
+                    <div class="toolbar-right">
+                        <p>
+                            &copy; @DateTime.Now.Year - Croissant Powered by <a href="https://www.facebook.com/novir">Novir+</a>
+                        </p>
+                    </div>
+                </div>
+            }
         </div>
-    
+
+    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -155,10 +162,7 @@
     <script type="text/javascript">
 
         window.onscroll = function () { scrollFunction() };
-        function saleDetails() {
-            var selected = $('#SaleDropDown').val();
-            window.location = "/Home/SalesDetails/" + selected;
-        }
+
         function scrollFunction() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 document.getElementById("myBtn").style.display = "block";
@@ -173,7 +177,9 @@
             document.documentElement.scrollTop = 0; // For IE and Firefox
         }
         $(document).ready(function () {
-
+            $('.product').click(function () {
+                window.location = "/home/product/" + $(this).attr('id');
+            });
             $('#searchArea').bind("enterKey", function (e) {
                 window.location = "/home/Search?query=" + $(this).val();
             });
@@ -183,7 +189,7 @@
                 }
             });
             $('.product').click(function () {
-                window.location = "/home/product/" + $(this).attr('id');
+                // window.location = "/home/product/" + $(this).attr('id');
             });
             $('.adminOrderRow').click(function () {
                 window.location = "/admin/orderdetails/?OrderId=" + $(this).attr('id');
@@ -208,26 +214,7 @@
 
                 });
             });
-            $('.removeCard').click(function () {
-                var id = $(this).attr('id');
-                $.ajax({
-                    url: "/Home/RemoveCard/" + id,
-                    type: "POST",
-                    processData: false,
-                    contentType: false,
-                    success: function (response) {
-                        //code after success
-                        console.log('#' + id + 'itemCard');
-                        $('#' + id + 'itemCard').remove();
 
-                    },
-                    error: function (er) {
-
-                        alert(er.responseText);
-                    }
-
-                });
-            });
             $(".fileUpload").click(function () {
                 var parent = $(this).parent();
                 var data = new FormData();
@@ -254,86 +241,52 @@
 
                 });
             });
-            $(".SalefileUpload").click(function () {
-                var parent = $(this).parent();
-                var data = new FormData();
-                var files = $(this).parent().find(".uploadEditorImage").get(0).files;
-                if (files.length > 0) {
-                    data.append("HttpPostedFileBase", files[0]);
-                    $(this).parent().find('.image').val('/images/Carousel/' + files[0].name)
-                }
-                //.val('/images/' + files[0].name);
-                $.ajax({
-                    url: "/Home/FileUploadCarousel/",
-                    type: "POST",
-                    processData: false,
-                    contentType: false,
-                    data: data,
-                    success: function (response) {
-                        //code after success
-                        alert(response)
-                    },
-                    error: function (er) {
 
-                        alert(er.responseText);
+        });
+        function orderBtnClickItem(itemId) {
+
+            $('#orderDetails').load("/home/Order/" + itemId);
+            document.getElementById("orderDetails").style.display = "block";
+                    //         $.ajax({
+                    //    type: 'GET',
+                    //    url: "/home/Order/"+itemId,
+                    //    success: function (data) {
+                    //        alert(data);
+                    //        $('#orderDetails').innerHTML = data;
+                    //    }
+                    //});
                     }
 
-                });
-            });
-        });
-        function goToDetails() {
-
-
-            window.location = "/home/orderDetails/" + $('#listInt').val();
-        }
-        function orderBtnClick() {
-            window.location = "/home/order";
-        }
-        function orderBtnClickItem(itemId) {
-            window.location = "/home/order/" + itemId;
-        }
-        function addToCard(itemId) {
-            var quantity = $('#cardQuantity').val();
-            if (quantity == "") {
-                $('#cardQuantityRequired').html("Укажите количество товара.");
-                $('#cardQuantity').focus();
-                return;
-            }
-            $.ajax({
-                url: "/Home/AddToCard?productId=" + itemId + "&quantity=" + quantity,
-                type: "GET",
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    //code after success
-                    alert(response)
-                },
-                error: function (er) {
-
-                    alert(er.responseText);
+        function goToDetails()
+        {
+                     $.ajax({
+                type: 'POST',
+                url: '@Url.Content("~/home/OrderDetails")',
+                data: objectToPass,
+                success: function (data) {
+                    $('.orderDetails').innerHTML = data;
                 }
-
             });
         }
 
-        $(document).ready(function () {
-            $(".iconImg").click(function (event) {
 
-                $('#generalImg').attr('src', $(event.target).attr('src'));
-            });
-        });
+        //$(document).ready(function () {
+        //    $(".iconImg").click(function (event) {
+        //        $('#generalImg').attr('src', $(event.target).attr('src'));
+        //    });
+        //});
 
     </script>
-    @if (Request.Browser.IsMobileDevice)
-    {
-        <style>
-            .iconImg {
-                width: 20% !important;
-                height: auto;
-                cursor: pointer;
-            }
-        </style>
-    }
+    @*@if (Request.Browser.IsMobileDevice)
+        {
+            <style>
+                .iconImg {
+                    width: 20% !important;
+                    height: auto;
+                    cursor: pointer;
+                }
+            </style>
+        }*@
 
 </body>
 </html>

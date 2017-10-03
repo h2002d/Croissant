@@ -1,7 +1,7 @@
 ﻿@model  Dictionary<string, List<LaserArt.Models.Product>>
 
 @{
-    ViewBag.Title = "Главная";
+    ViewBag.Title = "Գլխավոր";
 }
 
 <div class="jumbotron" style="padding:0 !important;">
@@ -9,26 +9,15 @@
         @if (!Request.Browser.IsMobileDevice)
         {
 
-            <div class="col-md-3">
-                <img src="~/images/logo_croissant.png" class="mainlogo" />
+            <div class="col-md-12">
+                <img  src="~/images/logo_vegetables.jpg" class="mainlogo" />
             </div>
-            <div class="col-md-9">
-
-                @*<div class="w3-content w3-section">
-                    @foreach (var item in ViewBag.Sales)
-                    {
-                        <a class="mySlides" href="@item.link">
-                            <img class="myslideImage" src="@item.image">
-                        </a>
-                    }
-
-                </div>*@
-            </div>
+         
         }
         else
         {
             <div class="col-md-12">
-                <img src="~/images/logo_croissant.png" class="mainlogo" />
+                <img src="~/images/logo_vegetables.jpg" class="mainlogo" />
             </div>
         }
     </div>
@@ -67,7 +56,7 @@
                 <div class="row product" align="center" id="@product.Id" style="font-size:12px; padding:5px; margin-bottom:20px;">
                     <div class="col-md-12">
                         <img style="width:100%; height:auto;" src="@product.ImageSource" />
-                        <p>#@product.Id @product.ProductTitle</p>
+                        <p> @product.ProductTitle</p>
                         <p style="display:inline">
                             Գինը: @product.Price դրամ
                             @if (@product.PriceDiscounted != 0)
@@ -77,9 +66,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="row" align="center">
+                @*<div class="row" align="center">
                     <input type="button" value="Պատվիրել" class="btn btn-default" onclick="orderBtnClickItem(@product.Id)" />
-                </div>
+                </div>*@
             </div>
             i++;
             if (i != 0 && i % 3 == 0 || i == item.Value.Count)

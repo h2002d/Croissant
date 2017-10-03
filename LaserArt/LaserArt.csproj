@@ -235,7 +235,7 @@
     <Content Include="images\cardBasketIcon.png" />
     <Content Include="images\Carousel\box.jpg" />
     <Content Include="images\Carousel\Logo.png" />
-    <Content Include="images\logo_croissant.png" />
+    <Content Include="images\logo_vegetables.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -295,6 +295,7 @@
     <Content Include="Views\Admin\OrderDetails.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\_PartialOrderDetails.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

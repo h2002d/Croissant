@@ -72,6 +72,10 @@ namespace LaserArt.Controllers
         {
             try
             {
+                newProduct.ImageSource1 = "";
+                newProduct.ImageSource2 = "";
+                newProduct.ImageSource3 = "";
+
                 newProduct.SaveProduct();
                 return RedirectToAction("Index");
             }

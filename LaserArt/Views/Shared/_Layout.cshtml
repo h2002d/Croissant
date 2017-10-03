@@ -3,70 +3,131 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Croissant</title>
+    <title>@ViewBag.Title - Բանջարեղեն</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-
-    <div style="width:90%; margin:0 auto;">
-
+    @if (!Request.Browser.IsMobileDevice)
+    {
         <div class="list-inline top-menu row">
-            <div class="col-md-10" style="font-size:30px; font-style:italic;" title="Croissant">Croissant</div>
-            @if (!Request.Browser.IsMobileDevice)
+            <div class="col-md-2" style="font-size:30px; font-style:italic;" title="Բանջարեղեն"><a style="text-decoration:none; color:white;" href="/">Բանջարեղեն</a></div>
+            <div class="col-md-8">
+                <ul>
+                    <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
+                    @foreach (var item in ViewBag.Categories)
+                {
+                        <li><a href="/home/category/@item.Id">@item.CategoryName</a></li>
+                    }
+                    <li>@Html.ActionLink("Մեր Մասին", "About", "Home")</li>
+                    <li>@Html.ActionLink("Կապ", "Contact", "Home")</li>
+
+
+                </ul>
+            </div>
+
+
+            <div class=" col-md-2">
+                <div class="inner-addon right-addon">
+                    <i class="glyphicon glyphicon-search" style="color:black"></i>
+                    <input type="text" id="searchArea" class="form-control" placeholder="Որոնել..." />
+                </div>
+            </div>
+
+
+        </div>
+    }
+    <div style="width:90%; margin:0 auto;">
+        @if (!Request.Browser.IsMobileDevice)
+        {
+
+            <div class="col-sm-3" style="padding:0;">
+                @if (this.User.IsInRole("Administrator"))
+                {
+
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                    <span class="sr-only"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div>
+                                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                    <ul class="nav navbar-nav">
+
+                                        <li>@Html.ActionLink("Ավելացնել ապրանք", "CreateProduct", "Home")</li>
+                                        <li>@Html.ActionLink("Ավելացնել կատեգորիա", "CreateCategory", "Home")</li>
+                                        @*<li>@Html.ActionLink("Заказы", "Order", "Admin")</li>
+                                            <li>@Html.ActionLink("Дизайнер", "Sales", "Home")</li>*@
+
+                                        @Html.Partial("_LoginPartial")
+
+
+                                    </ul>
+
+                                </div><!--/.nav-collapse -->
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </div>
+
+                }
+            </div>
+        }
+        <div>
+            @if (Request.Browser.IsMobileDevice)
             {
-                <div class=" col-md-2">
-                    <div class="inner-addon right-addon">
-                        <i class="glyphicon glyphicon-search" style="color:black"></i>
-                        <input type="text" id="searchArea" class="form-control" placeholder="Փնտրել..." />
+                <div class="col-sm-3" style="padding:0;">
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                    <span class="sr-only"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+
+
+                                <input type="text" id="searchArea" style="margin:5px; width:70%;" class="form-control" placeholder="Փնտրել..." />
+
+                            </div>
+                            <div>
+                                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
+                                        @foreach (var item in ViewBag.Categories)
+                                        {
+                                            <li><a href="/home/category/@item.Id">@item.CategoryName</a></li>
+                                        }
+                                        <li>@Html.ActionLink("Մեր Մասին", "About", "Home")</li>
+                                        <li>@Html.ActionLink("Կապ", "Contact", "Home")</li>
+
+
+
+
+                                        @if (this.User.IsInRole("Administrator"))
+                                        {
+                                            <li>@Html.ActionLink("Ավելացնել ապրանք", "CreateProduct", "Home")</li>
+                                            <li>@Html.ActionLink("Ավելացնել կատեգորիա", "CreateCategory", "Home")</li>
+                                            @*<li>@Html.ActionLink("Պատվերներ", "Order", "Admin")</li>
+                                                <li>@Html.ActionLink("Дизайнер", "Sales", "Home")</li>*@
+
+                                            @Html.Partial("_LoginPartial")
+                                        }
+
+                                    </ul>
+
+                                </div><!--/.nav-collapse -->
+                            </div><!--/.nav-collapse -->
+                        </div>
                     </div>
                 </div>
             }
-        </div>
-        <div>
-            <div class="col-sm-3" style="padding:0;">
-                <div class="sidebar-nav">
-                    <div class="navbar navbar-default" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                                <span class="sr-only"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            @if (Request.Browser.IsMobileDevice)
-                            {
-                                <input type="text" id="searchArea" style="margin:5px; width:70%;" class="form-control" placeholder="Փնտրել..." />
-                            }
-                        </div>
-                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
-                                @foreach (var item in ViewBag.Categories)
-                                {
-                                    <li><a href="/home/category/@item.Id">@item.CategoryName</a></li>
-                                }
-                                <li>@Html.ActionLink("Մեր Մասին", "About", "Home")</li>
-                                <li>@Html.ActionLink("Կապ", "Contact", "Home")</li>
-
-
-                                <li>  <a href="/home/card">Корзина <u>@ViewBag.CardCount</u> шт.</a></li>
-
-                                @if (this.User.IsInRole("Administrator"))
-                                {
-                                    <li>@Html.ActionLink("Ավելացնել Ապրանք", "CreateProduct", "Home")</li>
-                                    <li>@Html.ActionLink("Ավելացնել կատեգորիա", "CreateCategory", "Home")</li>
-                                    <li>@Html.ActionLink("Պատվերներ", "Order", "Admin")</li>
-                                    @Html.Partial("_LoginPartial")
-                                }
-
-                            </ul>
-
-                        </div><!--/.nav-collapse -->
-                    </div>
-                </div>
-            </div>
             <div class="col-sm-9" style="padding:0 !important;">
                 <div class="container body-content">
                     @RenderBody()
@@ -116,7 +177,9 @@
             document.documentElement.scrollTop = 0; // For IE and Firefox
         }
         $(document).ready(function () {
-
+            $('.product').click(function () {
+                window.location = "/home/product/" + $(this).attr('id');
+            });
             $('#searchArea').bind("enterKey", function (e) {
                 window.location = "/home/Search?query=" + $(this).val();
             });
