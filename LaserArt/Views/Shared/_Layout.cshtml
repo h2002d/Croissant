@@ -12,17 +12,30 @@
     <div style="width:90%; margin:0 auto;">
 
         <div class="list-inline top-menu row">
-            <div class="col-md-10" style="font-size:30px; font-style:italic;" title="Croissant">Croissant</div>
-            @if (!Request.Browser.IsMobileDevice)
+            
+            <div class="col-md-10" title="Croissant">
+                <a href="/"> <img style="width:60%;" src="~/images/Logomakr_6zhA9B.png" /></a>
+
+                <p style="font-size:18px; margin-left:15%;">Որակյալ խմորեղենի օնլայն խանութ...</p>
+              @if (Request.Browser.IsMobileDevice)
+              {
+                <img class="toOrder" src="~/images/Logomakr_42lAJP (1).png" />
+              }
+            </div>
+                @if (!Request.Browser.IsMobileDevice)
             {
-                <div class=" col-md-2">
-                    <div class="inner-addon right-addon">
-                        <i class="glyphicon glyphicon-search" style="color:black"></i>
-                        <input type="text" id="searchArea" class="form-control" placeholder="Փնտրել..." />
+                   
+                    <div class=" col-md-2">
+                        <div class="inner-addon right-addon">
+                            <i class="glyphicon glyphicon-search" style="color:black"></i>
+                            <input type="text" id="searchArea" class="form-control" placeholder="Փնտրել..." />
+                            <img class="toOrder" src="~/images/Logomakr_42lAJP (1).png" />
+                        </div>
                     </div>
-                </div>
-            }
-        </div>
+                    <div></div>
+
+                }
+            </div>
         <div>
             <div class="col-sm-3" style="padding:0;">
                 <div class="sidebar-nav">
@@ -36,15 +49,15 @@
                             </button>
                             @if (Request.Browser.IsMobileDevice)
                             {
-                                <input type="text" id="searchArea" style="margin:5px; width:70%;" class="form-control" placeholder="Փնտրել..." />
+                                    <input type="text" id="searchArea" style="margin:5px; width:70%;" class="form-control" placeholder="Փնտրել..." />
                             }
-                        </div>
+                                </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
                                 @foreach (var item in ViewBag.ParentCategories)
                                 {
-                                    <li onmouseout="categoryClose(@item.Key.Id)" onmouseover="categoryHover(@item.Key.Id)"><a href="/home/parentcategory/@item.Key.Id">@item.Key.Name</a>
+                                    <li onmouseout="categoryClose(@item.Key.Id)" onmouseover="categoryHover(@item.Key.Id)"><a href="/home/parentcategory/@item.Key.Id">@item.Key.Name<span class="caret"></span></a>
                                 <ul class="nav navbar-nav" id="orderDetails_@item.Key.Id" style="display:none;">
                                    @foreach (var cat in item.Value)
                                    {
@@ -91,7 +104,7 @@
                 <div class="toolbar" align="center">
                     <div class="toolbar-right">
                         <p>
-                            &copy; @DateTime.Now.Year - Croissant Powered by <a href="https://www.facebook.com/novir">Novir+</a>
+                            &copy; @DateTime.Now.Year - Croissant Powered by <a href="https://web.facebook.com/novirarm/">Novir</a>
                         </p>
                     </div>
                 </div>

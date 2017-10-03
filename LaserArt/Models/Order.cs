@@ -12,7 +12,7 @@ namespace LaserArt.Models
         public List<int> ProductId { get; set; }
         public string Address { get; set; }
         public string Name { get; set; }
-       
+       public int Quantity { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime OrderDate { get; set; }
         public bool isCompleted { get; set; }

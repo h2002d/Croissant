@@ -1,7 +1,7 @@
 ﻿@model List<LaserArt.Models.Product>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Փնտրել";
 }
 
 <div class="jumbotron" style="padding:0 !important;">
@@ -12,17 +12,7 @@
             @*<div class="col-md-3">
                 <img src="~/images/Logo.png" class="mainlogo" />
             </div>*@
-            <div class="col-md-9">
-                <div class="w3-content w3-section">
-                    @foreach (var item in ViewBag.Sales)
-                {
-                        <a class="mySlides" href="@item.link">
-                            <img class="myslideImage" src="@item.image">
-                        </a>
-                    }
-
-                </div>
-            </div>
+           
         }
         else
         {
@@ -34,7 +24,7 @@
 </div>
 <div class="container jumbotron" style="padding-top:5px !important;">
     <div class="row" align="left">
-        @ViewBag.Info
+       Որոնման արդյունքները
     </div>
     <hr />
     @{

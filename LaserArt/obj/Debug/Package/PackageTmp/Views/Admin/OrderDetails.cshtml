@@ -10,14 +10,14 @@
         <div class="row orderItem" id="@(item.Value+"itemCard")">
             <div class="row">
                 <div class="col-md-3">
-                    <p>Название</p>
+                    <p>Անուն</p>
                 </div>
                 
                 <div class="col-md-2">
-                    <p>Кол-во</p>
+                    <p>Քանակ</p>
                 </div>
                 <div class="col-md-2">
-                    <p>Цена</p>
+                    <p>Գին</p>
                 </div>
              
             </div>
@@ -32,7 +32,7 @@
                     <p>@item.Key</p>
                 </div>
                 <div class="col-md-2">
-                    <p>@item.Value.Price руб.</p>
+                    <p>@item.Value.Price դրամ.</p>
                     @if (@item.Value.PriceDiscounted != 0)
                 {
                         <del> @item.Value.PriceDiscounted</del>

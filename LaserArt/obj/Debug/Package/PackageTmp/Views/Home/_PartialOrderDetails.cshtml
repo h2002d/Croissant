@@ -1,5 +1,7 @@
 ﻿@model LaserArt.Models.Order
-<span id="close" onclick="closeDiv()">x</span>
+
+<div class="col-md-10"></div>
+<span id="close" onclick="closeDiv()" class="col-md-1 closeX">x</span><br />
 
 @using (Html.BeginForm("OrderDetails", "Home",FormMethod.Post, new { id = "orderForm" }))
 {
@@ -35,6 +37,13 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <p>Քանակը</p>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
         <div class="form-group">

@@ -216,7 +216,7 @@ namespace LaserArt.Controllers
             CardModel model = new CardModel();
             model.product = Models.Product.GetProducts(id).First();
             model.ProductId = id;
-            model.ProductQuantity = 1;
+            model.ProductQuantity = newOrder.Quantity;
             newOrder.Products.Clear();
             newOrder.Products.Add(model);
             newOrder.Id = newOrder.saveOrder();
@@ -245,18 +245,18 @@ namespace LaserArt.Controllers
                 MailMessage mail = new MailMessage();
                 mail.To.Add(EmailTo);
                 mail.From = new MailAddress(EmailFrom);
-                mail.Subject = "НОВЫЙ ЗАКАЗ!";
+                mail.Subject = "ՆՈՐ ՊԱՏՎԵՐ!";
                 StringBuilder Body = new StringBuilder();
-                Body.Append("<b>У вас есть новый заказ</b><br/>")
-                    .Append(string.Format("Номер заказа:{0} <br/>", newOrder.Id))
-                    .Append(string.Format("Адрес:{0} <br/>", newOrder.Address))
+                Body.Append("<b>Դուք ունեք նոր պատվեր</b><br/>")
+                    .Append(string.Format("Պատվերի համարը:{0} <br/>", newOrder.Id))
+                    .Append(string.Format("Հասցեն:{0} <br/>", newOrder.Address))
 
-                    .Append(string.Format("Имя зказчика:{0}<br/>", newOrder.Name));
+                    .Append(string.Format("Պատվիրատուի անունը:{0}<br/>", newOrder.Name));
                     foreach (var item in newOrder.Products) {
                    var product= Models.Product.GetProducts(item.ProductId).FirstOrDefault();
                     Body.Append(string.Format("Название товара:N{0} {1} <br/>", item.ProductId, product.ProductTitle));
                         }
-                Body.Append(string.Format("Вреия заказа: {0}", DateTime.Now));
+               // Body.Append(string.Format("Вреия заказа: {0}", DateTime.Now));
                 mail.Body = Body.ToString();
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();

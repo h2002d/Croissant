@@ -36,7 +36,7 @@
             <p>Կատեգորիա</p>
             <div class="col-md-10">
                 @Html.DropDownListFor(m => m.ParentCategoryId,
-                                 new SelectList(ViewBag.ParentCategories,
+                                 new SelectList(ViewBag.ParentCategory,
                                            "Id", "Name"),
                                             "--Ընտրել կատեգորիան--",
                                 new { @class = "form-control" })
