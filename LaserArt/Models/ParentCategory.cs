@@ -10,6 +10,7 @@ namespace LaserArt.Models
     {
         public int? Id { get; set; }
         public string Name { get; set; }
+        public string ImageSource { get; set; }
 
         public static List<ParentCategory> GetCategories(int? id)
         {

@@ -32,6 +32,8 @@ namespace LaserArt.DAO
                             ParentCategory newCategory = new ParentCategory();
                             newCategory.Id = Convert.ToInt32(rdr["Id"]);
                             newCategory.Name = rdr["ParentCategoryName"].ToString();
+                            newCategory.ImageSource = rdr["ImageSource"].ToString();
+
                             newCategoryList.Add(newCategory);
                         }
                         return newCategoryList;
@@ -83,6 +85,7 @@ namespace LaserArt.DAO
                         else
                             command.Parameters.AddWithValue("@Id", newCategory.Id);
                         command.Parameters.AddWithValue("@ParentCategoryName", newCategory.Name);
+                        command.Parameters.AddWithValue("@ImageSource", newCategory.ImageSource);
 
                         command.ExecuteNonQuery();
 

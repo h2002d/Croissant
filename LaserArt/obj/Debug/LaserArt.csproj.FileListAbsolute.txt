@@ -713,3 +713,5 @@ D:\Projects\Croissant\LaserArt\obj\Debug\LaserArt.csprojResolveAssemblyReference
 D:\Projects\Croissant\LaserArt\obj\Debug\LaserArt.csproj.CoreCompileInputs.cache
 D:\Projects\Croissant\LaserArt\obj\Debug\LaserArt.dll
 D:\Projects\Croissant\LaserArt\obj\Debug\LaserArt.pdb
+D:\Croissant\LaserArt\bin\ImageResizer.dll
+D:\Croissant\LaserArt\bin\ImageResizer.xml

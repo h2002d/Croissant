@@ -1,4 +1,5 @@
-﻿using LaserArt.Models;
+﻿using ImageResizer;
+using LaserArt.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace LaserArt.Controllers
            
             //var recomended = LaserArt.Models.Product.GetProducts(null).Take(3).ToList();
             //categoryList.Add("Re:Store-Family рекомендует:", recomended);
-            var categories = Models.Category.GetCategories(null);
+            var categories = Models.ParentCategory.GetCategories(null);
            
            // ViewBag.Sales = Models.Sales.GetSalesById(null);
             return View(categories);
@@ -169,6 +170,13 @@ namespace LaserArt.Controllers
                                    Server.MapPath("~/images"), pic);
             // file is uploaded
             file.SaveAs(path);
+            ResizeSettings resizeSetting = new ResizeSettings
+            {
+                Width = 300,
+                Height = 200,
+                Format = file.FileName.Split('.')[1]
+            };
+            ImageBuilder.Current.Build(path, path, resizeSetting);
 
             // save the image path path to the database or you can send image 
             // directly to database
@@ -250,11 +258,12 @@ namespace LaserArt.Controllers
                 Body.Append("<b>Դուք ունեք նոր պատվեր</b><br/>")
                     .Append(string.Format("Պատվերի համարը:{0} <br/>", newOrder.Id))
                     .Append(string.Format("Հասցեն:{0} <br/>", newOrder.Address))
+                    .Append(string.Format("Հեռախոսահամարը:{0} <br/>", newOrder.PhoneNumber))
 
                     .Append(string.Format("Պատվիրատուի անունը:{0}<br/>", newOrder.Name));
                     foreach (var item in newOrder.Products) {
                    var product= Models.Product.GetProducts(item.ProductId).FirstOrDefault();
-                    Body.Append(string.Format("Название товара:N{0} {1} <br/>", item.ProductId, product.ProductTitle));
+                    Body.Append(string.Format("Ապրանքի անվանումը (քանակը):N{0} {1} {2} հատ<br/>", item.ProductId, product.ProductTitle,newOrder.Quantity));
                         }
                // Body.Append(string.Format("Вреия заказа: {0}", DateTime.Now));
                 mail.Body = Body.ToString();

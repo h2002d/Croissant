@@ -1,4 +1,4 @@
-﻿@model  List<LaserArt.Models.Category>
+﻿@model  List<LaserArt.Models.ParentCategory>
 
 @{
     ViewBag.Title = "Գլխավոր";
@@ -48,8 +48,8 @@
                 @Html.Raw("<div class=\"row\" >");
             }
             <div id="@category.Id" class="col-md-4 item-div" align="center">
-                <img style="width:100%; height:auto;" src="@category.CategoryImage" />
-                <p>@category.CategoryName</p>
+                <img style="width:100%; height:auto;" src="@category.ImageSource" />
+                <p>@category.Name</p>
             </div>
 
 

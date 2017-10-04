@@ -71,7 +71,7 @@ namespace LaserArt.Controllers
             try
             {
                 newCategory.SaveCategory();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             catch (Exception ex)
             {

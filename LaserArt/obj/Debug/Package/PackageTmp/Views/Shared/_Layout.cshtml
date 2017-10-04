@@ -19,7 +19,7 @@
                 <p style="font-size:18px; margin-left:15%;">Որակյալ խմորեղենի օնլայն խանութ...</p>
               @if (Request.Browser.IsMobileDevice)
               {
-                <img class="toOrder" src="~/images/Logomakr_42lAJP (1).png" />
+                <img class="toOrder" style="width :40% !important" src="~/images/Logomakr_42lAJP (1).png" />
               }
             </div>
                 @if (!Request.Browser.IsMobileDevice)
@@ -150,7 +150,7 @@
                 }
             });
             $('.item-div').click(function () {
-                 window.location = "/home/category/" + $(this).attr('id');
+                 window.location = "/home/parentcategory/" + $(this).attr('id');
             });
             $('.adminOrderRow').click(function () {
                 window.location = "/admin/orderdetails/?OrderId=" + $(this).attr('id');

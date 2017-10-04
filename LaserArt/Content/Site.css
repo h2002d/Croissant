@@ -249,7 +249,7 @@ textarea {
 #orderDetails {
     display: none;
     max-width: 280px;
-    height: 70%;
+   
     padding: 20px;
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
