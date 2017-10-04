@@ -16,10 +16,16 @@
             <div class="col-md-8">
                 <ul>
                     <li>@Html.ActionLink("Գլխավոր", "Index", "Home")</li>
-                    @foreach (var item in ViewBag.Categories)
-                {
-                <li><a href="/home/category/@item.Id">@item.CategoryName</a></li>
-                }
+                  
+                        <li onmouseout="categoryClose()" onmouseover="categoryHover()"><a href="">Կատեգորիաներ</a>
+                    <ul class="dropdown-menu" id="categoryDetails" style="display:none; z-index:999999999999;">
+                                @foreach (var cat in ViewBag.Categories)
+                                {
+                                    <li style="background-color:#e9e4e4"><a href="/home/category/@cat.Id">@cat.CategoryName</a></li>
+                                }
+                            </ul>
+                        </li>
+                    
                     <li>@Html.ActionLink("Մեր Մասին", "About", "Home")</li>
                     <li>@Html.ActionLink("Կապ", "Contact", "Home")</li>
 
@@ -39,45 +45,45 @@
         </div>
     }
     <div style="width:90%; margin:0 auto;">
-        @if (!Request.Browser.IsMobileDevice)
+        @if (!Request.Browser.IsMobileDevice&& this.User.IsInRole("Administrator"))
         {
-
+          
             <div class="col-sm-3" style="padding:0;">
-                @if (this.User.IsInRole("Administrator"))
-                {
+               
 
-                <div class="sidebar-nav">
-                    <div class="navbar navbar-default" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                                <span class="sr-only"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div>
-                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                                <ul class="nav navbar-nav">
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                    <span class="sr-only"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div>
+                                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                    <ul class="nav navbar-nav">
 
-                                    <li>@Html.ActionLink("Ավելացնել ապրանք", "CreateProduct", "Home")</li>
-                                    <li>@Html.ActionLink("Ավելացնել կատեգորիա", "CreateCategory", "Home")</li>
-                                    @*<li>@Html.ActionLink("Заказы", "Order", "Admin")</li>
-                                        <li>@Html.ActionLink("Дизайнер", "Sales", "Home")</li>*@
+                                        <li>@Html.ActionLink("Ավելացնել ապրանք", "CreateProduct", "Home")</li>
+                                        <li>@Html.ActionLink("Ավելացնել կատեգորիա", "CreateCategory", "Home")</li>
+                                        @*<li>@Html.ActionLink("Заказы", "Order", "Admin")</li>
+                                            <li>@Html.ActionLink("Дизайнер", "Sales", "Home")</li>*@
 
-                                    @Html.Partial("_LoginPartial")
+                                        @Html.Partial("_LoginPartial")
 
 
-                                </ul>
+                                    </ul>
 
+                                </div><!--/.nav-collapse -->
                             </div><!--/.nav-collapse -->
-                        </div><!--/.nav-collapse -->
+                        </div>
                     </div>
-                </div>
 
-                }
+                
             </div>
-        }
+                
+            }
         <div>
             @if (Request.Browser.IsMobileDevice)
             {
@@ -128,7 +134,7 @@
                     </div>
                 </div>
             }
-            <div class="col-sm-9" style="padding:0 !important;">
+            <div class="@(this.User.IsInRole("Administrator")?"col-sm-9":"col-sm-12") style="padding:0 !important;">
                 <div class="container body-content">
                     @RenderBody()
                     <div align="center" id="orderDetails">
@@ -160,7 +166,12 @@
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector: '#textarea' });</script>
     <script type="text/javascript">
-
+        function categoryHover() {
+            $("#categoryDetails").show();
+        }
+        function categoryClose() {
+            $("#categoryDetails").hide();
+        }
         window.onscroll = function () { scrollFunction() };
 
         function scrollFunction() {

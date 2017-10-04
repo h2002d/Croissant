@@ -45,12 +45,11 @@
         </div>
     }
     <div style="width:90%; margin:0 auto;">
-        @if (!Request.Browser.IsMobileDevice)
+        @if (!Request.Browser.IsMobileDevice&& this.User.IsInRole("Administrator"))
         {
-
+          
             <div class="col-sm-3" style="padding:0;">
-                @if (this.User.IsInRole("Administrator"))
-                {
+               
 
                     <div class="sidebar-nav">
                         <div class="navbar navbar-default" role="navigation">
@@ -81,9 +80,10 @@
                         </div>
                     </div>
 
-                }
+                
             </div>
-        }
+                
+            }
         <div>
             @if (Request.Browser.IsMobileDevice)
             {
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             }
-            <div class="col-sm-9" style="padding:0 !important;">
+            <div class="@(this.User.IsInRole("Administrator")?"col-sm-9":"col-sm-12") style="padding:0 !important;">
                 <div class="container body-content">
                     @RenderBody()
                     <div align="center" id="orderDetails">
