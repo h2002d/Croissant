@@ -246,10 +246,19 @@ textarea {
 {
     border:2px solid black;
 }
-#orderDetails {
+.item-divCategory {
+    cursor: pointer;
+}
+
+    .item-divCategory:hover {
+        border: 2px solid black;
+    }
+.textValidation {
+    color:red;
+    font-size:12px;
+}#orderDetails {
     display: none;
     max-width: 280px;
-   
     padding: 20px;
     background: rgba(0, 0, 0, 0.5);
     position: fixed;

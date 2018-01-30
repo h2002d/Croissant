@@ -189,7 +189,7 @@ namespace LaserArt.Controllers
 
 
             // after successfully uploading redirect the user
-            return Json("Картинка загружена", JsonRequestBehavior.AllowGet);
+            return Json("Նկարը վերբեռնված է", JsonRequestBehavior.AllowGet);
         }
 
       
@@ -203,7 +203,7 @@ namespace LaserArt.Controllers
         public ActionResult RemoveProduct(int id)
         {
             Models.Product.DeleteProduct(id);
-            return Json("Телефон удален.",JsonRequestBehavior.AllowGet);
+            return Json("Ապրանքը ջնջված է",JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Order(int id)
@@ -217,19 +217,22 @@ namespace LaserArt.Controllers
        
 
         [HttpPost]
+        [ValidateInput(true)]
         public ActionResult OrderDetails(Order newOrder)
         {
-            int id = Convert.ToInt32(Session["ProductId"]);
             
-            CardModel model = new CardModel();
-            model.product = Models.Product.GetProducts(id).First();
-            model.ProductId = id;
-            model.ProductQuantity = newOrder.Quantity;
-            newOrder.Products.Clear();
-            newOrder.Products.Add(model);
-            newOrder.Id = newOrder.saveOrder();
-            SendMail(newOrder);
-            return RedirectToAction("OrderAproval", new { id = newOrder.Id });
+                int id = Convert.ToInt32(Session["ProductId"]);
+
+                CardModel model = new CardModel();
+                model.product = Models.Product.GetProducts(id).First();
+                model.ProductId = id;
+                model.ProductQuantity = newOrder.Quantity;
+                newOrder.Products.Clear();
+                newOrder.Products.Add(model);
+                newOrder.Id = newOrder.saveOrder();
+                SendMail(newOrder);
+                return RedirectToAction("OrderAproval", new { id = newOrder.Id });
+           
         }
         public ActionResult OrderAproval(int id)
         {
